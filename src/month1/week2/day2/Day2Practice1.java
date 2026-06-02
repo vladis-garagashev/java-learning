@@ -1,8 +1,8 @@
-package month1.week2.day1;
+package month1.week2.day2;
 
 import java.util.Scanner;
 
-public class Day1Practice1 {
+public class Day2Practice1 {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -19,27 +19,11 @@ public class Day1Practice1 {
 
         while (choice != 0) {
             printMenu();
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = readMenuChoice(scanner);
             System.out.println();
 
-            if (choice == 1) {
-                printPlayers(names, scores);
-            } else if (choice == 2) {
-                searchPlayer(scanner, names, scores);
-            } else if (choice == 3) {
-                printBestPlayer(names, scores);
-            } else if (choice == 4) {
-                printAverageScore(scores);
-            } else if (choice == 5) {
-                printLowestPlayer(names, scores);
-            } else if (choice == 6) {
-                printPlayersAboveAverage(names, scores);
-            } else if (choice == 0) {
-                System.out.println("Goodbye!");
-            } else {
-                System.out.println("Invalid option.");
-            }
+            handleMenuChoice(choice, scanner, names, scores);
+
             System.out.println();
         }
 
@@ -54,18 +38,59 @@ public class Day1Practice1 {
         System.out.println("5. Show lowest player");
         System.out.println("6. Show players above average");
         System.out.println("0. Exit");
-        System.out.print("Choose option: ");
+    }
+
+    public static void handleMenuChoice(int choice, Scanner scanner, String[] names, int[] scores) {
+        if (choice == 1) {
+            printPlayers(names, scores);
+        } else if (choice == 2) {
+            searchPlayer(scanner, names, scores);
+        } else if (choice == 3) {
+            printBestPlayer(names, scores);
+        } else if (choice == 4) {
+            printAverageScore(scores);
+        } else if (choice == 5) {
+            printLowestPlayer(names, scores);
+        } else if (choice == 6) {
+            printPlayersAboveAverage(names, scores);
+        } else if (choice == 0) {
+            System.out.println("Goodbye!");
+        }
+    }
+
+    public static int readMenuChoice(Scanner scanner) {
+
+        int choice = readInt(scanner, "Choose option: ");
+
+        while (choice < 0 || choice > 6){
+            System.out.println("Invalid option. Choose from 0 to 6.");
+            choice = readInt(scanner, "Choose option: ");
+
+        }
+        return choice;
+    }
+
+    public static int readInt(Scanner scanner, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+
+            if (scanner.hasNextInt()) {
+                int number = scanner.nextInt();
+                scanner.nextLine();
+                return number;
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine();
+            }
+        }
     }
 
     public static int readPlayerCount(Scanner scanner) {
-        System.out.print("Enter player count: ");
-        int size = scanner.nextInt();
-
+        int size = readInt(scanner, "Enter player count: ");
         while (size <= 0) {
-            System.out.print("Player count must be positive. Try again: ");
-            size = scanner.nextInt();
+            System.out.println("Player count must be positive. Try again.");
+            size = readInt(scanner, "Enter player count: ");
         }
-        scanner.nextLine();
 
         return size;
 
@@ -76,17 +101,15 @@ public class Day1Practice1 {
             System.out.print("Enter player name: ");
             names[i] = scanner.nextLine();
             scores[i] = readScore(scanner);
-            scanner.nextLine();
             System.out.println();
         }
     }
 
     public static int readScore(Scanner scanner) {
-        System.out.print("Enter score: ");
-        int score = scanner.nextInt();
+        int score = readInt(scanner, "Enter score: ");
         while (score < 0) {
-            System.out.print("Score cannot be negative. Try again: ");
-            score = scanner.nextInt();
+            System.out.println("Score cannot be negative. Try again.");
+            score = readInt(scanner, "Enter score: ");
         }
         return score;
     }
