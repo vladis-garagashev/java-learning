@@ -16,6 +16,12 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+### Java build files ###
+*.class
+*.jar
+*.war
+*.ear
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
