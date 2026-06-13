@@ -24,7 +24,7 @@ public class Player {
         this("Unknown" ,0);
     }
 
-    String getInfo() {
+    public String getInfo() {
         return name + ": " + score;
     }
 
