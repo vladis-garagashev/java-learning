@@ -40,7 +40,7 @@ public class Day5Final {
     }
 
     public static Player findBestPlayer(ArrayList<Player> players) {
-        Player bestPlayer = players.get(0);
+        Player bestPlayer = players.getFirst();
 
 
         for (int i = 1; i < players.size(); i++) {
@@ -61,7 +61,7 @@ public class Day5Final {
     }
 
     public static Player findLowestPlayer(ArrayList<Player> players) {
-        Player lowestPlayer = players.get(0);
+        Player lowestPlayer = players.getFirst();
 
         for (int i = 1; i < players.size(); i++) {
 
