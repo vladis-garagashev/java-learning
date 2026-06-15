@@ -3,7 +3,7 @@ package month1.week4.day3;
 import java.util.ArrayList;
 
 public class PlayerManager {
-    private ArrayList<Player> players;
+    private final ArrayList<Player> players;
 
     public PlayerManager() {
         players = new ArrayList<>();
@@ -32,8 +32,8 @@ public class PlayerManager {
             int oldScore = foundPlayer.getScore();
             foundPlayer.setScore(newScore);
             System.out.println("Player updated.");
-            System.out.println("Old score:  " + oldScore);
-            System.out.println("New score:  " + foundPlayer.getScore());
+            System.out.println("Old score: " + oldScore);
+            System.out.println("New score: " + foundPlayer.getScore());
         }
 
     }
